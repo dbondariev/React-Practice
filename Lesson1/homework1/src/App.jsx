@@ -1,9 +1,7 @@
 import React from 'react';
 
 const App = () => {
-  return <div>
-    <h1 className='title'>Todo List</h1>
-  </div>;
+  return <div>Hello, React!</div>;
 };
 
 export default App;
