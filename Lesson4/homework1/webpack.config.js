@@ -1,9 +1,9 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin, { loader } from 'mini-css-extract-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import { ProgressPlugin, HotModuleReplacementPlugin } from 'webpack';
 
-module.exports = (env, argv) => {
+export default (env, argv) => {
   const isProduction = argv.mode === 'production';
   const config = {
     entry: './src/index.jsx',
@@ -20,7 +20,7 @@ module.exports = (env, argv) => {
         {
           test: /.s?css$/,
           use: [
-            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+            isProduction ? loader : 'style-loader',
             'css-loader',
             'sass-loader',
           ],
@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
       extensions: ['.js', '.jsx'],
     },
     plugins: [
-      new webpack.ProgressPlugin(),
+      new ProgressPlugin(),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: './src/index.html',
@@ -46,7 +46,7 @@ module.exports = (env, argv) => {
   };
 
   if (isProduction) {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    config.plugins.push(new HotModuleReplacementPlugin());
   }
 
   if (isProduction) {
