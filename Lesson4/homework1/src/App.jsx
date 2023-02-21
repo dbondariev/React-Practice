@@ -1,20 +1,10 @@
 import React from 'react';
+import Clock from './Clock';
 
-const App = () => {
-  return <div>
-    <h1>Search Form</h1>
-    <div>
-      <input type="text" />
-      <button>Search</button>
-    </div>
-  </div>;
-};
-
-export default App;
-
-
-{/* <h1>Search Form</h1>
-<div>
-  <input type="text" />
-  <button>Search</button>
-</div> */}
+export default props => (
+  <>
+    <Clock location="New York" offset={-3} />
+    <Clock location="London" offset={0} />
+    <Clock location="Kyiv" offset={2} />
+  </>
+);
